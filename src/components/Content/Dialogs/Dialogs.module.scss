@@ -1,0 +1,22 @@
+@import '/src/mixins';
+
+.wrapper {
+    @include main_wrapper;
+}
+
+.content {
+    display: flex;
+    gap: 30px;
+}
+
+.dialogs {
+    flex: 0 0 200px;
+    border-right: 2px solid var(--pink);
+    overflow: hidden;
+}
+
+.chats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

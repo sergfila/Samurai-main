@@ -1,0 +1,14 @@
+.text {
+    padding: 8px 16px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.item {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--gray);
+    span {
+        color: var(--dark-gray)
+    }
+}

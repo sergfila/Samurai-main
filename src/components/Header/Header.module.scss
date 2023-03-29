@@ -1,0 +1,16 @@
+.header {
+    height: 60px;
+    background-color: var(--pink);
+    padding: 0 24px;
+    align-items: center;
+    display: flex;
+
+    a {
+        height: 40px;
+        display: block;
+
+        img {
+            height: 40px;
+        }
+    }
+}

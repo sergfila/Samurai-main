@@ -1,13 +1,18 @@
 import React from 'react';
-import './App.css';
-import Technologies from "./technologies";
-import Header from "./Header";
+import './App.scss';
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Content from "./components/Content/Content";
 
-const App = () => {
+const App = (props: any) => {
+
     return (
-        <div>
+        <div className="app-wrapper">
             <Header />
-            <Technologies />
+            <div className="content-wrapper">
+                <Sidebar sidebar={props.state.sidebar} />
+                <Content state={props.state} />
+            </div>
         </div>
     );
 }

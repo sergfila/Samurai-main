@@ -1,0 +1,10 @@
+.friends {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--white);
+    padding: 24px;
+    border-radius: 8px;
+}

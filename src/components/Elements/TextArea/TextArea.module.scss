@@ -1,0 +1,15 @@
+.textarea {
+    width: 100%;
+    min-height: 120px;
+    border-radius: 8px;
+    border: 1px solid var(--pink);
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+    background-color: var(--light-gray);
+
+    &:focus-visible {
+        border: 1px solid var(--dark-pink);
+    }
+}

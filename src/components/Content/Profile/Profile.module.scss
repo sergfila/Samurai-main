@@ -1,0 +1,16 @@
+/* Обертка Профиль */
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.item {
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+.data {
+    padding: 0 24px 24px 24px;
+}

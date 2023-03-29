@@ -1,0 +1,22 @@
+.list {
+    color: var(--dark-gray);
+
+    ul {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        li {
+            font-size: 14px;
+            background-color: var(--light-gray);
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    }
+
+    span {
+        color: var(--light-black);
+        font-size: 16px;
+    }
+}

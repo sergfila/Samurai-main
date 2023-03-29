@@ -1,0 +1,14 @@
+.avatar {
+    position: relative;
+    margin-top: -75px;
+    padding: 0 24px;
+    margin-bottom: 24px;
+
+    img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border: 8px solid var(--white);
+    }
+}

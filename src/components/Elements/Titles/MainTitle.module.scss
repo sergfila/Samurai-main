@@ -1,0 +1,5 @@
+@import '/src/mixins';
+
+.title {
+    @include main_title;
+}

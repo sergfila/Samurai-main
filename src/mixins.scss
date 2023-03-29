@@ -1,0 +1,26 @@
+@mixin main_wrapper {
+    padding: 24px;
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+@mixin main_title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: var(--dark-gray);
+}
+
+@mixin buttons {
+    border-radius: 8px;
+    border: none;
+    background-color: var(--pink);
+    transition: .3s;
+    color: var(--dark-pink);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--dark-pink);
+        color: var(--white);
+    }
+}

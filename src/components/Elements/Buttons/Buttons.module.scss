@@ -1,0 +1,11 @@
+@import '/src/mixins';
+
+.buttons {
+    @include buttons;
+
+    &__main {
+        min-width: 120px;
+        padding: 10px 30px;
+        font-size: 14px;
+    }
+}
