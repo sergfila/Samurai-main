@@ -4,10 +4,19 @@ import TextArea from "../../../Elements/TextArea/TextArea";
 import MainButton from "../../../Elements/Buttons/MainButton";
 import MainTitle from "../../../Elements/Titles/MainTitle";
 import Post from "./Post/Post";
+import {PostsDataType} from "../../../../redux/state";
 
-const Posts = (props: any) => {
+type postsDataItems = {
+    postsDataItems: PostsDataType[]
+}
 
-    let postsElements = props.postsData.map((p: any) => <Post message={p.message} likecount={p.likeCount}/>)
+const Posts = (props: postsDataItems) => {
+
+    let postsElements = props.postsDataItems.map((el) =>
+        <Post messagePost={el.message}
+              likecountPost={el.likeCount}
+              avatarPost={el.avatar}
+        />)
 
     return (
         <div className={s.wrapper}>

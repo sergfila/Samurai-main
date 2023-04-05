@@ -1,10 +1,15 @@
 import s from "../PostAvatar/PostAvatar.module.scss";
 import React from "react";
+import {PostsDataType} from "../../../../../../redux/state";
 
-const PostAvatar = () => {
+type PostAvatarType = {
+    postAvatar: string;
+}
+
+const PostAvatar = (props: PostAvatarType) => {
     return (
         <div className={s.avatar}>
-            <img src={require('./avatar3.png')} alt={''}/>
+            <img src={`${process.env.PUBLIC_URL}${props.postAvatar}`} alt={''}/>
         </div>
     )
 }

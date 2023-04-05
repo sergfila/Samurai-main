@@ -1,10 +1,15 @@
 import React from "react";
 import s from "./ProfileAvatar.module.scss";
+import {InfoDataType} from "../../../../redux/state";
 
-const ProfileAvatar = () => {
+type ProfileAvatarType = {
+    profileAvatar: InfoDataType[]
+}
+
+const ProfileAvatar = (props: ProfileAvatarType) => {
     return (
         <div className={s.avatar}>
-            <img src={require('./avatar3.png')} alt={''}/>
+            <img src={`${process.env.PUBLIC_URL}${props.profileAvatar[0].avatar}`} alt={''}/>
         </div>
     );
 }

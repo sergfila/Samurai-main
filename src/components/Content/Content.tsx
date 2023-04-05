@@ -7,14 +7,17 @@ import News from "./News/News";
 import {Route} from "react-router-dom";
 import Settings from "./Settings/Settings";
 import Friends from "./Friends/Friends";
+import {StateType} from "../../redux/state";
 
+type ContentStateType = {
+    contentState: StateType
+}
 
-const Content = (props: any) => {
-
+const Content = (props: ContentStateType) => {
     return (
         <div className={s.wrapper}>
-            <Route path={'/profile'} render={ () => <Profile profilePage={props.state.profilePage} />}/>
-            <Route path={'/dialogs'} render={ () => <Dialogs messagesPage={props.state.messagesPage} />}/>
+            <Route path={'/profile'} render={ () => <Profile profilePageState={props.contentState.profilePage} />}/>
+            <Route path={'/dialogs'} render={ () => <Dialogs messagesPageState={props.contentState.messagesPage} />}/>
             <Route path={'/music'} render={ () => <Music />}/>
             <Route path={'/news'} render={ () => <News />}/>
             <Route path={'/settings'} render={ () => <Settings />}/>

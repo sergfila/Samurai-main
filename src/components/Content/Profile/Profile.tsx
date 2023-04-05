@@ -5,21 +5,26 @@ import ProfileBanner from "./ProfileBanner/ProfileBanner";
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 import ProfileName from "./ProfileName/ProfileName";
 import ProfileList from "./ProfileList/ProfileList";
+import {ProfilePageType} from "../../../redux/state";
 
-const Profile = (props: any) => {
+type ProfilePageStateType = {
+    profilePageState: ProfilePageType
+}
+
+const Profile = (props: ProfilePageStateType) => {
 
     return (
         <div className={s.profile}>
             <div className={s.item}>
                 <ProfileBanner />
-                <ProfileAvatar />
+                <ProfileAvatar profileAvatar={props.profilePageState.infoData} />
                 <div className={s.data}>
-                    <ProfileName infoData={props.profilePage.infoData}/>
-                    <ProfileList infoData={props.profilePage.infoData}/>
+                    <ProfileName infoDataName={props.profilePageState.infoData}/>
+                    <ProfileList infoDataList={props.profilePageState.infoData}/>
                 </div>
             </div>
             <div className={s.item}>
-                <Posts postsData={props.profilePage.postsData}/>
+                <Posts postsDataItems={props.profilePageState.postsData}/>
             </div>
         </div>
     );

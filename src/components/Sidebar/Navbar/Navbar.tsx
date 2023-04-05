@@ -2,7 +2,7 @@ import s from "./Navbar.module.scss";
 import {NavLink} from "react-router-dom";
 import React from "react";
 
-const Navbar = () => {
+export const Navbar = () => {
     return (
         <nav className={s.navbar}>
             <div className={s.link}><NavLink activeClassName={s.active} to='/profile'>Profile</NavLink></div>
@@ -14,5 +14,3 @@ const Navbar = () => {
         </nav>
     )
 }
-
-export default Navbar;

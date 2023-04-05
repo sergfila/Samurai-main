@@ -1,12 +1,12 @@
 import s from "../PostText/PostText.module.scss";
 import React from "react";
 
-type PostTextPropsType = {
+type PostTextType = {
     message: string;
     likecount: string;
 }
 
-const PostText = (props: PostTextPropsType) => {
+const PostText = (props: PostTextType) => {
     return (
         <div className={s.text}>
             <div>{props.message}</div>

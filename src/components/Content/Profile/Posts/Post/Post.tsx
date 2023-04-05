@@ -3,12 +3,18 @@ import React from "react";
 import PostAvatar from "./PostAvatar/PostAvatar";
 import PostText from "./PostText/PostText";
 
-const Post = (props: any) => {
+type PostDataType = {
+    messagePost: string
+    likecountPost: string
+    avatarPost: string
+}
+
+const Post = (props: PostDataType) => {
 
     return (
         <div className={s.item}>
-            <PostAvatar />
-            <PostText message={props.message} likecount={props.likecount}/>
+            <PostAvatar postAvatar={props.avatarPost}/>
+            <PostText message={props.messagePost} likecount={props.likecountPost}/>
         </div>
     )
 }
