@@ -3,20 +3,21 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Content from "./components/Content/Content";
-import {StateType} from "./redux/state";
+import {StateGlobalType} from "./redux/state";
 
-type GlobalStateType = {
-    globalState: StateType
+
+type StateType = {
+    state: StateGlobalType
 }
 
-const App = (props: GlobalStateType) => {
+const App = (props: StateType) => {
 
     return (
         <div className="app-wrapper">
             <Header />
             <div className="content-wrapper">
-                <Sidebar globalSidebar={props.globalState.sidebar} />
-                <Content contentState={props.globalState} />
+                <Sidebar sidebar={props.state.sidebar} />
+                <Content contentState={props.state} />
             </div>
         </div>
     );

@@ -2,18 +2,18 @@ import React from "react";
 import s from './Sidebar.module.scss';
 import {Navbar} from "./Navbar/Navbar";
 import FriendsBar from "./FriendsBar/FriendsBar";
-import {SidebarType} from "../../redux/state";
+import {StateSidebarType} from "../../redux/state";
 
-type GlobalSidebarType = {
-    globalSidebar: SidebarType
+type SidebarType = {
+    sidebar: StateSidebarType
 }
 
-const Sidebar = (props: GlobalSidebarType) => {
+const Sidebar = (props: SidebarType) => {
 
     return (
         <div className={s.sidebar}>
             <Navbar />
-            <FriendsBar friendsbar={props.globalSidebar.friendsBar}/>
+            <FriendsBar friendsBar={props.sidebar.friendsBar}/>
         </div>
     );
 }

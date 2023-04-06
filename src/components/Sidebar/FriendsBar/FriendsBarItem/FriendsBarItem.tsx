@@ -1,16 +1,21 @@
 import s from './FriendsBarItem.module.scss'
 import React from "react";
-import {FriendsBarType} from "../../../../redux/state";
 
-const FriendsBarItem: React.FC<FriendsBarType> = (props) => {
+type FriendsBarType = {
+    friendsBarId: number
+    friendsBarName: string
+    friendsBarAvatar: string
+}
+
+const FriendsBarItem = (props: FriendsBarType) => {
 
     return (
         <div className={s.item}>
             <div className={s.avatar}>
-                <img src={`${process.env.PUBLIC_URL}${props.avatar}`} alt={''}/>
+                <img src={`${process.env.PUBLIC_URL}${props.friendsBarAvatar}`} alt={''}/>
             </div>
             <div className={s.name}>
-                {props.name}
+                {props.friendsBarName}
             </div>
         </div>
     )

@@ -1,49 +1,50 @@
-export type StateType = {
-    profilePage: ProfilePageType,
-    messagesPage: MessagesPageType,
-    sidebar: SidebarType
+export type StateGlobalType = {
+    profilePage: StateProfilePageType
+    messagesPage: StateMessagesPageType
+    sidebar: StateSidebarType
 }
-export type ProfilePageType = {
-    postsData: PostsDataType[],
-    infoData: InfoDataType[]
+export type StateProfilePageType = {
+    postsData: StatePostsDataType[]
+    infoData: StateInfoDataType[]
 }
-export type PostsDataType = {
+export type StatePostsDataType = {
     id: number
     message: string
     likeCount: string
     avatar: string
 }
-export type InfoDataType = {
-    id: number,
-    date: string,
-    name: string,
-    city: string,
-    education: string,
-    website: string,
+export type StateInfoDataType = {
+    id: number
+    date: string
+    name: string
+    city: string
+    education: string
+    website: string
     avatar: string
 }
-export type MessagesPageType = {
-    dialogsData: DialogsDataType[],
-    chatsData: ChatsDataType[]
+export type StateMessagesPageType = {
+    dialogsData: StateDialogsDataType[]
+    chatsData: StateChatsDataType[]
 }
-export type DialogsDataType = {
-    id: number,
+export type StateDialogsDataType = {
+    id: number
     name: string
 }
-export type ChatsDataType = {
-    id: number,
+export type StateChatsDataType = {
+    id: number
     message: string
+    avatar: string
 }
-export type SidebarType = {
-    friendsBar: FriendsBarType[]
+export type StateSidebarType = {
+    friendsBar: StateFriendsBarType[]
 }
-export type FriendsBarType = {
-    id: number,
-    name: string,
+export type StateFriendsBarType = {
+    id: number
+    name: string
     avatar: string
 }
 
-export const state: StateType = {
+export const state: StateGlobalType = {
 
     profilePage: {
         postsData: [
@@ -65,10 +66,10 @@ export const state: StateType = {
             {id: 5, name: 'Cornifer'},
         ],
         chatsData: [
-            {id: 1, message: 'Hey'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Fine'},
-            {id: 4, message: 'Good Bye'},
+            {id: 1, message: 'Hey', avatar: '/img/avatar4.png'},
+            {id: 2, message: 'How are you?', avatar: '/img/avatar4.png'},
+            {id: 3, message: 'Fine', avatar: '/img/avatar4.png'},
+            {id: 4, message: 'Good Bye', avatar: '/img/avatar4.png'},
         ]
     },
 

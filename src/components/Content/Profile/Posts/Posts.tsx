@@ -4,15 +4,15 @@ import TextArea from "../../../Elements/TextArea/TextArea";
 import MainButton from "../../../Elements/Buttons/MainButton";
 import MainTitle from "../../../Elements/Titles/MainTitle";
 import Post from "./Post/Post";
-import {PostsDataType} from "../../../../redux/state";
+import {StatePostsDataType} from "../../../../redux/state";
 
-type postsDataItems = {
-    postsDataItems: PostsDataType[]
+type ProfilePostsType = {
+    profilePosts: StatePostsDataType[]
 }
 
-const Posts = (props: postsDataItems) => {
+const Posts = (props: ProfilePostsType) => {
 
-    let postsElements = props.postsDataItems.map((el) =>
+    let postsElements = props.profilePosts.map((el) =>
         <Post messagePost={el.message}
               likecountPost={el.likeCount}
               avatarPost={el.avatar}

@@ -1,6 +1,5 @@
 import s from "../PostAvatar/PostAvatar.module.scss";
 import React from "react";
-import {PostsDataType} from "../../../../../../redux/state";
 
 type PostAvatarType = {
     postAvatar: string;

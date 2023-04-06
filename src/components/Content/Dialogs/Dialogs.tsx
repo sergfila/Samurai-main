@@ -3,11 +3,21 @@ import s from './Dialogs.module.scss';
 import MainTitle from "../../Elements/Titles/MainTitle";
 import DialogsItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
+import {StateMessagesPageType} from "../../../redux/state";
 
-const Dialogs = (props: any) => {
+type MessagesPageType = {
+    messagesPage: StateMessagesPageType
+}
 
-    let dialogsElements = props.messagesPage.dialogsData.map((d: any) => <DialogsItem name={d.name} id={d.id} />);
-    let chatsElements = props.messagesPage.chatsData.map((c: any) => <ChatItem message={c.message} id={c.id}/>)
+const Dialogs = (props: MessagesPageType) => {
+
+    let dialogsElements = props.messagesPage.dialogsData.map((el) => <DialogsItem
+        name={el.name}
+        id={el.id} />);
+    let chatsElements = props.messagesPage.chatsData.map((el) => <ChatItem
+        message={el.message}
+        id={el.id}
+        avatar={el.avatar} />)
 
     return (
         <div className={s.wrapper}>

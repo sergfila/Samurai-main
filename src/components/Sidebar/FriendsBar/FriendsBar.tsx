@@ -1,11 +1,20 @@
 import s from "./FriendsBar.module.scss";
 import React from "react";
 import FriendsBarItem from "./FriendsBarItem/FriendsBarItem";
+import {StateFriendsBarType} from "../../../redux/state";
 
-const FriendsBar = (props: any) => {
+type FriendsBarType = {
+    friendsBar: StateFriendsBarType[]
+}
 
-    let friendsBarItem = props.friendsbar.map((p: any) => <FriendsBarItem id={p.id} name={p.name} avatar={p.avatar}/>)
-    console.log(friendsBarItem)
+const FriendsBar = (props: FriendsBarType) => {
+
+    let friendsBarItem = props.friendsBar.map((el) => <FriendsBarItem
+        friendsBarId={el.id}
+        friendsBarName={el.name}
+        friendsBarAvatar={el.avatar}
+    />)
+
     return (
         <div className={s.friends}>
             {friendsBarItem}

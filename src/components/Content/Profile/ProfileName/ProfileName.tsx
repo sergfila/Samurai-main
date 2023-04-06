@@ -1,15 +1,15 @@
 import s from "./ProfileName.module.scss";
 import React from "react";
-import {InfoDataType} from "../../../../redux/state";
+import {StateInfoDataType} from "../../../../redux/state";
 
-type InfoDataNameType = {
-    infoDataName: InfoDataType[]
+type ProfileNameType = {
+    profileName: StateInfoDataType[]
 }
 
-export const ProfileName = (props: InfoDataNameType) => {
+export const ProfileName = (props: ProfileNameType) => {
 
     return (
-        <div className={s.name}>{props.infoDataName[0].name}</div>
+        <div className={s.name}>{props.profileName[0].name}</div>
     )
 }
 
