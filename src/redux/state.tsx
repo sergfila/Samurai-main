@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type StateGlobalType = {
     profilePage: StateProfilePageType
     messagesPage: StateMessagesPageType
@@ -43,7 +45,6 @@ export type StateFriendsBarType = {
     name: string
     avatar: string
 }
-
 export const state: StateGlobalType = {
 
     profilePage: {
@@ -80,4 +81,25 @@ export const state: StateGlobalType = {
             {id: 3, name: 'Cornifer', avatar: '/img/avatar3.png'},
         ]
     }
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: StatePostsDataType = {
+        id: 5,
+        message: postMessage,
+        likeCount: '0',
+        avatar: '/img/avatar4.png'
+    }
+    state.profilePage.postsData.unshift(newPost);
+    rerenderEntireTree(state);
+}
+
+export const addChatMessage = (chatMessage: string) => {
+    const newChatMessage: StateChatsDataType = {
+        id: 5,
+        message: chatMessage,
+        avatar: '/img/avatar4.png'
+    }
+    state.messagesPage.chatsData.push(newChatMessage);
+    rerenderEntireTree(state);
 }

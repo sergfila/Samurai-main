@@ -23,3 +23,11 @@
     flex-direction: column;
     gap: 16px;
 }
+
+textarea {
+    @include textarea;
+}
+
+button {
+    @include buttons;
+}

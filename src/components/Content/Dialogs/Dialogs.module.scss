@@ -20,3 +20,17 @@
     display: flex;
     flex-direction: column;
 }
+
+.elements {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: end;
+}
+textarea {
+    @include textarea;
+}
+
+button {
+    @include buttons;
+}

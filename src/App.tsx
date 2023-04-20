@@ -3,7 +3,8 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Content from "./components/Content/Content";
-import {StateGlobalType} from "./redux/state";
+import {addChatMessage, StateGlobalType} from "./redux/state";
+import {addPost} from './redux/state';
 
 
 type StateType = {
@@ -16,8 +17,14 @@ const App = (props: StateType) => {
         <div className="app-wrapper">
             <Header />
             <div className="content-wrapper">
-                <Sidebar sidebar={props.state.sidebar} />
-                <Content contentState={props.state} />
+                <Sidebar
+                    sidebar={props.state.sidebar}
+                />
+                <Content
+                    contentState={props.state}
+                    addPost={addPost}
+                    addChatMessage={addChatMessage}
+                />
             </div>
         </div>
     );

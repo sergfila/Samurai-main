@@ -7,17 +7,25 @@ import News from "./News/News";
 import {Route} from "react-router-dom";
 import Settings from "./Settings/Settings";
 import Friends from "./Friends/Friends";
-import {StateGlobalType} from "../../redux/state";
+import {addPost, StateGlobalType} from "../../redux/state";
 
 type ContentStateType = {
     contentState: StateGlobalType
+    addPost: (postMessage: string) => void
+    addChatMessage: (chatMessage: string) => void
 }
 
 const Content = (props: ContentStateType) => {
     return (
         <div className={s.wrapper}>
-            <Route path={'/profile'} render={ () => <Profile profilePage={props.contentState.profilePage} />}/>
-            <Route path={'/dialogs'} render={ () => <Dialogs messagesPage={props.contentState.messagesPage} />}/>
+            <Route path={'/profile'}
+                render={ () => <Profile profilePage={props.contentState.profilePage}
+                                        addPost={props.addPost}
+                />}/>
+            <Route path={'/dialogs'}
+                   render={ () => <Dialogs messagesPage={props.contentState.messagesPage}
+                                           addChatMessage={props.addChatMessage}
+                   />}/>
             <Route path={'/music'} render={ () => <Music />}/>
             <Route path={'/news'} render={ () => <News />}/>
             <Route path={'/settings'} render={ () => <Settings />}/>

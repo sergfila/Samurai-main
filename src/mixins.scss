@@ -17,10 +17,28 @@
     background-color: var(--pink);
     transition: .3s;
     color: var(--dark-pink);
+    padding: 10px 30px;
+    font-size: 14px;
 
     &:hover {
         cursor: pointer;
         background-color: var(--dark-pink);
         color: var(--white);
+    }
+}
+
+@mixin textarea {
+    width: 100%;
+    min-height: 120px;
+    border-radius: 8px;
+    border: 1px solid var(--pink);
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+    background-color: var(--light-gray);
+
+    &:focus-visible {
+        border: 1px solid var(--dark-pink);
     }
 }

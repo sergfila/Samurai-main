@@ -10,6 +10,7 @@ type FriendsBarType = {
 const FriendsBar = (props: FriendsBarType) => {
 
     let friendsBarItem = props.friendsBar.map((el) => <FriendsBarItem
+        key={el.id}
         friendsBarId={el.id}
         friendsBarName={el.name}
         friendsBarAvatar={el.avatar}
