@@ -3,27 +3,28 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Content from "./components/Content/Content";
-import {addChatMessage, StateGlobalType} from "./redux/state";
-import {addPost} from './redux/state';
+import {ActionsTypes, StateGlobalType, StoreType} from "./redux/state";
 
 
 type StateType = {
-    state: StateGlobalType
+    store: StoreType
+    dispatch: (action: ActionsTypes) => void
 }
 
 const App = (props: StateType) => {
+
+    const state: StateGlobalType = props.store.getState();
 
     return (
         <div className="app-wrapper">
             <Header />
             <div className="content-wrapper">
                 <Sidebar
-                    sidebar={props.state.sidebar}
+                    sidebar={state.sidebar}
                 />
                 <Content
-                    contentState={props.state}
-                    addPost={addPost}
-                    addChatMessage={addChatMessage}
+                    contentState={state}
+                    dispatch={props.dispatch}
                 />
             </div>
         </div>

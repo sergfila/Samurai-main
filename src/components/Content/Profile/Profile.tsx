@@ -5,11 +5,11 @@ import ProfileBanner from "./ProfileBanner/ProfileBanner";
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 import ProfileName from "./ProfileName/ProfileName";
 import ProfileList from "./ProfileList/ProfileList";
-import {StateProfilePageType} from "../../../redux/state";
+import {ActionsTypes, StateProfilePageType} from "../../../redux/state";
 
 type ProfilePageType = {
     profilePage: StateProfilePageType
-    addPost: (postMessage: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Profile = (props: ProfilePageType) => {
@@ -25,8 +25,8 @@ const Profile = (props: ProfilePageType) => {
                 </div>
             </div>
             <div className={s.item}>
-                <Posts profilePosts={props.profilePage.postsData}
-                       addPost={props.addPost}
+                <Posts profilePage={props.profilePage}
+                       dispatch={props.dispatch}
                 />
             </div>
         </div>

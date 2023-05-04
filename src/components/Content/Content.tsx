@@ -7,12 +7,11 @@ import News from "./News/News";
 import {Route} from "react-router-dom";
 import Settings from "./Settings/Settings";
 import Friends from "./Friends/Friends";
-import {addPost, StateGlobalType} from "../../redux/state";
+import {ActionsTypes, StateGlobalType} from "../../redux/state";
 
 type ContentStateType = {
     contentState: StateGlobalType
-    addPost: (postMessage: string) => void
-    addChatMessage: (chatMessage: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Content = (props: ContentStateType) => {
@@ -20,11 +19,11 @@ const Content = (props: ContentStateType) => {
         <div className={s.wrapper}>
             <Route path={'/profile'}
                 render={ () => <Profile profilePage={props.contentState.profilePage}
-                                        addPost={props.addPost}
+                                        dispatch={props.dispatch}
                 />}/>
             <Route path={'/dialogs'}
                    render={ () => <Dialogs messagesPage={props.contentState.messagesPage}
-                                           addChatMessage={props.addChatMessage}
+                                           dispatch={props.dispatch}
                    />}/>
             <Route path={'/music'} render={ () => <Music />}/>
             <Route path={'/news'} render={ () => <News />}/>

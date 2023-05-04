@@ -2,7 +2,7 @@ import s from './FriendsBarItem.module.scss'
 import React from "react";
 
 type FriendsBarType = {
-    friendsBarId: number
+    friendsBarId: string
     friendsBarName: string
     friendsBarAvatar: string
 }

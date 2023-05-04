@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../render";
+import {v1} from "uuid";
 
 export type StateGlobalType = {
     profilePage: StateProfilePageType
@@ -8,15 +8,16 @@ export type StateGlobalType = {
 export type StateProfilePageType = {
     postsData: StatePostsDataType[]
     infoData: StateInfoDataType[]
+    newPostText: string
 }
 export type StatePostsDataType = {
-    id: number
+    id: string
     message: string
     likeCount: string
     avatar: string
 }
 export type StateInfoDataType = {
-    id: number
+    id: string
     date: string
     name: string
     city: string
@@ -27,13 +28,14 @@ export type StateInfoDataType = {
 export type StateMessagesPageType = {
     dialogsData: StateDialogsDataType[]
     chatsData: StateChatsDataType[]
+    newChatMessage: string
 }
 export type StateDialogsDataType = {
-    id: number
+    id: string
     name: string
 }
 export type StateChatsDataType = {
-    id: number
+    id: string
     message: string
     avatar: string
 }
@@ -41,65 +43,170 @@ export type StateSidebarType = {
     friendsBar: StateFriendsBarType[]
 }
 export type StateFriendsBarType = {
-    id: number
+    id: string
     name: string
     avatar: string
 }
-export const state: StateGlobalType = {
 
-    profilePage: {
-        postsData: [
-            {id: 1, message: 'HK is my favorite game!', likeCount: '10', avatar: '/img/avatar4.png'},
-            {id: 2, message: 'My first post', likeCount: '3', avatar: '/img/avatar4.png'}
-        ],
+export type StoreType = {
+    _state: StateGlobalType
+    subscribe: (callback: () => void) => void
+    _onChange: () => void
+    getState: () => StateGlobalType
+    dispatch: (action: ActionsTypes) => void
+}
 
-        infoData: [
-            {id: 1, date: '24.02.2005', name: 'Hornet', city: 'Hallownest', education: 'Master of needle and thread', website: 'https://www.hollowknight.com/', avatar: '/img/avatar4.png'}
-        ]
-    },
+export type ActionsTypes = AddPostActionType
+    | UpdateNewPostTextActionType
+    | AddChatMessageActionType
+    | UpdateNewMessageTextActionType
 
-    messagesPage: {
-        dialogsData: [
-            {id: 1, name: 'The Knight'},
-            {id: 2, name: 'Monomon the Teacher'},
-            {id: 3, name: 'Iselda'},
-            {id: 4, name: 'Caspian'},
-            {id: 5, name: 'Cornifer'},
-        ],
-        chatsData: [
-            {id: 1, message: 'Hey', avatar: '/img/avatar4.png'},
-            {id: 2, message: 'How are you?', avatar: '/img/avatar4.png'},
-            {id: 3, message: 'Fine', avatar: '/img/avatar4.png'},
-            {id: 4, message: 'Good Bye', avatar: '/img/avatar4.png'},
-        ]
-    },
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+type AddChatMessageActionType = {
+    type: 'ADD-CHAT-MESSAGE'
+}
+type UpdateNewMessageTextActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
 
-    sidebar: {
-        friendsBar: [
-            {id: 1, name: 'The Knight', avatar: '/img/avatar1.png'},
-            {id: 2, name: 'Grimm', avatar: '/img/avatar2.png'},
-            {id: 3, name: 'Cornifer', avatar: '/img/avatar3.png'},
-        ]
+export const addPostActionCreator = (): AddPostActionType  => {
+    return {
+        type: "ADD-POST"
+    }
+}
+export const onPostChangeActionCreator = (newText: string): UpdateNewPostTextActionType => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        newText: newText
+    }
+}
+export const addNewMessageActionCreator = (): AddChatMessageActionType => {
+    return {
+        type: 'ADD-CHAT-MESSAGE'
+    }
+}
+export const onMessageChangeActionCreator = (newText: string): UpdateNewMessageTextActionType => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-TEXT",
+        newText: newText
     }
 }
 
-export const addPost = (postMessage: string) => {
-    const newPost: StatePostsDataType = {
-        id: 5,
-        message: postMessage,
-        likeCount: '0',
-        avatar: '/img/avatar4.png'
-    }
-    state.profilePage.postsData.unshift(newPost);
-    rerenderEntireTree(state);
-}
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            postsData: [
+                {id: v1(), message: 'HK is my favorite game!', likeCount: '10', avatar: '/img/avatar4.png'},
+                {id: v1(), message: 'My first post', likeCount: '3', avatar: '/img/avatar4.png'}
+            ],
 
-export const addChatMessage = (chatMessage: string) => {
-    const newChatMessage: StateChatsDataType = {
-        id: 5,
-        message: chatMessage,
-        avatar: '/img/avatar4.png'
+            infoData: [
+                {id: v1(), date: '24.02.2005', name: 'Hornet', city: 'Hallownest', education: 'Master of needle and thread', website: 'https://www.hollowknight.com/', avatar: '/img/avatar4.png'}
+            ],
+
+            newPostText: ''
+        },
+        messagesPage: {
+            dialogsData: [
+                {id: v1(), name: 'The Knight'},
+                {id: v1(), name: 'Monomon the Teacher'},
+                {id: v1(), name: 'Iselda'},
+                {id: v1(), name: 'Caspian'},
+                {id: v1(), name: 'Cornifer'},
+            ],
+            chatsData: [
+                {id: v1(), message: 'Hey', avatar: '/img/avatar4.png'},
+                {id: v1(), message: 'How are you?', avatar: '/img/avatar4.png'},
+                {id: v1(), message: 'Fine', avatar: '/img/avatar4.png'},
+                {id: v1(), message: 'Good Bye', avatar: '/img/avatar4.png'},
+            ],
+
+            newChatMessage: ''
+        },
+        sidebar: {
+            friendsBar: [
+                {id: v1(), name: 'The Knight', avatar: '/img/avatar1.png'},
+                {id: v1(), name: 'Grimm', avatar: '/img/avatar2.png'},
+                {id: v1(), name: 'Cornifer', avatar: '/img/avatar3.png'},
+            ]
+        }
+    },
+    // добавление поста (Profile)
+    // addPost() {
+    //     const newPost: StatePostsDataType = {
+    //         id: 5,
+    //         message: this._state.profilePage.newPostText,
+    //         likeCount: '0',
+    //         avatar: '/img/avatar4.png'
+    //     }
+    //     this._state.profilePage.newPostText = '';
+    //     this._state.profilePage.postsData.unshift(newPost);
+    //     this._onChange();
+    // },
+    // updateNewPostText (newText: string) {
+    //     this._state.profilePage.newPostText = newText;
+    //     this._onChange()
+    // },
+    // добавление сообщения (Dialogs)
+    // addChatMessage() {
+    //     const newChatMessage: StateChatsDataType = {
+    //         id: 5,
+    //         message: this._state.messagesPage.newChatMessage,
+    //         avatar: '/img/avatar4.png'
+    //     }
+    //     this._state.messagesPage.newChatMessage = ''
+    //     this._state.messagesPage.chatsData.push(newChatMessage);
+    //     this._onChange();
+    // },
+    // updateNewMessageText (newText: string) {
+    //     this._state.messagesPage.newChatMessage = newText;
+    //     this._onChange()
+    // },
+    //
+    _onChange() {
+        console.log('1')
+    },
+    subscribe (callback) {
+        this._onChange = callback
+    },
+    getState() {
+        return this._state
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+
+            const newPost: StatePostsDataType = {
+                id: v1(),
+                message: this._state.profilePage.newPostText,
+                likeCount: '0',
+                avatar: '/img/avatar4.png'
+            }
+            this._state.profilePage.newPostText = '';
+            this._state.profilePage.postsData.unshift(newPost);
+            this._onChange();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._onChange();
+        } else if (action.type === 'ADD-CHAT-MESSAGE') {
+            const newChatMessage: StateChatsDataType = {
+                id: v1(),
+                message: this._state.messagesPage.newChatMessage,
+                avatar: '/img/avatar4.png'
+            }
+            this._state.messagesPage.newChatMessage = ''
+            this._state.messagesPage.chatsData.push(newChatMessage);
+            this._onChange();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.messagesPage.newChatMessage = action.newText;
+            this._onChange()
+        }
     }
-    state.messagesPage.chatsData.push(newChatMessage);
-    rerenderEntireTree(state);
 }
