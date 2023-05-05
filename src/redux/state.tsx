@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 export type StateGlobalType = {
     profilePage: StateProfilePageType
@@ -61,43 +64,21 @@ export type ActionsTypes = AddPostActionType
     | AddChatMessageActionType
     | UpdateNewMessageTextActionType
 
-type AddPostActionType = {
+export type AddPostActionType = {
     type: 'ADD-POST'
 }
-type UpdateNewPostTextActionType = {
+export type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-type AddChatMessageActionType = {
+export type AddChatMessageActionType = {
     type: 'ADD-CHAT-MESSAGE'
 }
-type UpdateNewMessageTextActionType = {
+export type UpdateNewMessageTextActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newText: string
 }
 
-export const addPostActionCreator = (): AddPostActionType  => {
-    return {
-        type: "ADD-POST"
-    }
-}
-export const onPostChangeActionCreator = (newText: string): UpdateNewPostTextActionType => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    }
-}
-export const addNewMessageActionCreator = (): AddChatMessageActionType => {
-    return {
-        type: 'ADD-CHAT-MESSAGE'
-    }
-}
-export const onMessageChangeActionCreator = (newText: string): UpdateNewMessageTextActionType => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-TEXT",
-        newText: newText
-    }
-}
 
 export const store: StoreType = {
     _state: {
@@ -138,40 +119,8 @@ export const store: StoreType = {
             ]
         }
     },
-    // добавление поста (Profile)
-    // addPost() {
-    //     const newPost: StatePostsDataType = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likeCount: '0',
-    //         avatar: '/img/avatar4.png'
-    //     }
-    //     this._state.profilePage.newPostText = '';
-    //     this._state.profilePage.postsData.unshift(newPost);
-    //     this._onChange();
-    // },
-    // updateNewPostText (newText: string) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._onChange()
-    // },
-    // добавление сообщения (Dialogs)
-    // addChatMessage() {
-    //     const newChatMessage: StateChatsDataType = {
-    //         id: 5,
-    //         message: this._state.messagesPage.newChatMessage,
-    //         avatar: '/img/avatar4.png'
-    //     }
-    //     this._state.messagesPage.newChatMessage = ''
-    //     this._state.messagesPage.chatsData.push(newChatMessage);
-    //     this._onChange();
-    // },
-    // updateNewMessageText (newText: string) {
-    //     this._state.messagesPage.newChatMessage = newText;
-    //     this._onChange()
-    // },
-    //
     _onChange() {
-        console.log('1')
+        console.log()
     },
     subscribe (callback) {
         this._onChange = callback
@@ -181,32 +130,11 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
 
-            const newPost: StatePostsDataType = {
-                id: v1(),
-                message: this._state.profilePage.newPostText,
-                likeCount: '0',
-                avatar: '/img/avatar4.png'
-            }
-            this._state.profilePage.newPostText = '';
-            this._state.profilePage.postsData.unshift(newPost);
-            this._onChange();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._onChange();
-        } else if (action.type === 'ADD-CHAT-MESSAGE') {
-            const newChatMessage: StateChatsDataType = {
-                id: v1(),
-                message: this._state.messagesPage.newChatMessage,
-                avatar: '/img/avatar4.png'
-            }
-            this._state.messagesPage.newChatMessage = ''
-            this._state.messagesPage.chatsData.push(newChatMessage);
-            this._onChange();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messagesPage.newChatMessage = action.newText;
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._onChange()
     }
 }

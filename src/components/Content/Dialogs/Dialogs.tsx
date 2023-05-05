@@ -5,10 +5,9 @@ import DialogsItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
 import {
     ActionsTypes,
-    addNewMessageActionCreator,
-    onMessageChangeActionCreator,
     StateMessagesPageType
 } from "../../../redux/state";
+import {addNewMessageActionCreator, onMessageChangeActionCreator} from "../../../redux/dialogs-reducer";
 
 type MessagesPageType = {
     messagesPage: StateMessagesPageType

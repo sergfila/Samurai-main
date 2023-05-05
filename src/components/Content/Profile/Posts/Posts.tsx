@@ -4,10 +4,9 @@ import MainTitle from "../../../Elements/Titles/MainTitle";
 import Post from "./Post/Post";
 import {
     ActionsTypes,
-    addPostActionCreator,
-    onPostChangeActionCreator,
     StateProfilePageType
 } from "../../../../redux/state";
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../../redux/profile-reducer";
 
 type ProfilePostsType = {
     profilePage: StateProfilePageType

@@ -17,6 +17,10 @@ type ContentStateType = {
 const Content = (props: ContentStateType) => {
     return (
         <div className={s.wrapper}>
+            <Route path={'/'} exact
+                   render={ () => <Profile profilePage={props.contentState.profilePage}
+                                           dispatch={props.dispatch}
+                   />}/>
             <Route path={'/profile'}
                 render={ () => <Profile profilePage={props.contentState.profilePage}
                                         dispatch={props.dispatch}
