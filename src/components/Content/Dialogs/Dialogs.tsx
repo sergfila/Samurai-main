@@ -3,15 +3,12 @@ import s from './Dialogs.module.scss';
 import MainTitle from "../../Elements/Titles/MainTitle";
 import DialogsItem from "./DialogItem/DialogItem";
 import ChatItem from "./ChatItem/ChatItem";
-import {
-    ActionsTypes,
-    StateMessagesPageType
-} from "../../../redux/state";
-import {addNewMessageActionCreator, onMessageChangeActionCreator} from "../../../redux/dialogs-reducer";
+import {StateMessagesPageType} from "../../../redux/store";
 
 type MessagesPageType = {
     messagesPage: StateMessagesPageType
-    dispatch: (action: ActionsTypes) => void
+    addNewMessage: () => void
+    onMessageChange: (text: string) => void
 }
 
 const Dialogs = (props: MessagesPageType) => {
@@ -30,13 +27,13 @@ const Dialogs = (props: MessagesPageType) => {
 
     const addNewMessage= () => {
         if (newMessageElement.current) {
-            props.dispatch(addNewMessageActionCreator())
+            props.addNewMessage()
         }
     }
     const onMessageChange = () => {
         if (newMessageElement.current) {
             const text = newMessageElement.current.value
-            props.dispatch(onMessageChangeActionCreator(text))
+            props.onMessageChange(text)
         }
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {

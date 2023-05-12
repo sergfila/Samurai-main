@@ -1,7 +1,7 @@
 import s from "./FriendsBar.module.scss";
 import React from "react";
 import FriendsBarItem from "./FriendsBarItem/FriendsBarItem";
-import {StateFriendsBarType} from "../../../redux/state";
+import {StateFriendsBarType} from "../../../redux/store";
 
 type FriendsBarType = {
     friendsBar: StateFriendsBarType[]

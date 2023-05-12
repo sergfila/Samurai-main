@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./ProfileAvatar.module.scss";
-import {StateInfoDataType} from "../../../../redux/state";
+import {StateInfoDataType} from "../../../../redux/store";
 
 type ProfileAvatarType = {
     profileAvatar: StateInfoDataType[]

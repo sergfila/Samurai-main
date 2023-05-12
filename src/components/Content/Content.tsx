@@ -7,7 +7,8 @@ import News from "./News/News";
 import {Route} from "react-router-dom";
 import Settings from "./Settings/Settings";
 import Friends from "./Friends/Friends";
-import {ActionsTypes, StateGlobalType} from "../../redux/state";
+import {ActionsTypes, StateGlobalType} from "../../redux/store";
+import DialogsContainer from "./Dialogs/DialogItem/DialogsContainer";
 
 type ContentStateType = {
     contentState: StateGlobalType
@@ -26,7 +27,7 @@ const Content = (props: ContentStateType) => {
                                         dispatch={props.dispatch}
                 />}/>
             <Route path={'/dialogs'}
-                   render={ () => <Dialogs messagesPage={props.contentState.messagesPage}
+                   render={ () => <DialogsContainer messagesPage={props.contentState.messagesPage}
                                            dispatch={props.dispatch}
                    />}/>
             <Route path={'/music'} render={ () => <Music />}/>

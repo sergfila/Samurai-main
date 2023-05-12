@@ -1,11 +1,12 @@
 import React from "react";
 import s from './Profile.module.scss';
-import Posts from "./Posts/Posts";
 import ProfileBanner from "./ProfileBanner/ProfileBanner";
 import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 import ProfileName from "./ProfileName/ProfileName";
 import ProfileList from "./ProfileList/ProfileList";
-import {ActionsTypes, StateProfilePageType} from "../../../redux/state";
+import {ActionsTypes, StateProfilePageType} from "../../../redux/store";
+import PostsContainer from "./Posts/PostsContainer";
+
 
 type ProfilePageType = {
     profilePage: StateProfilePageType
@@ -25,9 +26,7 @@ const Profile = (props: ProfilePageType) => {
                 </div>
             </div>
             <div className={s.item}>
-                <Posts profilePage={props.profilePage}
-                       dispatch={props.dispatch}
-                />
+                <PostsContainer profilePage={props.profilePage} dispatch={props.dispatch} />
             </div>
         </div>
     );

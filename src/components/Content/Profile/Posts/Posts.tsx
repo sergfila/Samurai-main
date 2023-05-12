@@ -2,18 +2,15 @@ import React, {KeyboardEvent} from "react";
 import s from "./Posts.module.scss";
 import MainTitle from "../../../Elements/Titles/MainTitle";
 import Post from "./Post/Post";
-import {
-    ActionsTypes,
-    StateProfilePageType
-} from "../../../../redux/state";
-import {addPostActionCreator, onPostChangeActionCreator} from "../../../../redux/profile-reducer";
+import {StateProfilePageType} from "../../../../redux/store";
 
-type ProfilePostsType = {
+type PostsType = {
     profilePage: StateProfilePageType
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
-const Posts = (props: ProfilePostsType) => {
+const Posts = (props: PostsType) => {
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -25,13 +22,13 @@ const Posts = (props: ProfilePostsType) => {
 
     const addPost = () => {
         if (newPostElement.current) {
-            props.dispatch(addPostActionCreator())
+        props.addPost();
         }
     }
     const onPostChange = () => {
         if (newPostElement.current) {
             const text = newPostElement.current.value
-            props.dispatch(onPostChangeActionCreator(text))
+            props.updateNewPostText(text)
         }
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -39,8 +36,6 @@ const Posts = (props: ProfilePostsType) => {
             addPost();
         }
     }
-
-
 
     return (
         <div className={s.wrapper}>

@@ -1,6 +1,6 @@
 import s from "./ProfileName.module.scss";
 import React from "react";
-import {StateInfoDataType} from "../../../../redux/state";
+import {StateInfoDataType} from "../../../../redux/store";
 
 type ProfileNameType = {
     profileName: StateInfoDataType[]

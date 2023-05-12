@@ -1,13 +1,22 @@
 import {
     ActionsTypes, AddPostActionType,
-    StatePostsDataType,
-    StateProfilePageType,
+    StatePostsDataType, StateProfilePageType,
     UpdateNewPostTextActionType
-} from "./state";
+} from "./store";
 import {v1} from "uuid";
 
-const profileReducer = (state: StateProfilePageType, action: ActionsTypes) => {
+let initialState: StateProfilePageType = {
+    postsData: [
+        {id: v1(), message: 'HK is my favorite game!', likeCount: '10', avatar: '/img/avatar4.png'},
+        {id: v1(), message: 'My first post', likeCount: '3', avatar: '/img/avatar4.png'}
+    ],
+    infoData: [
+        {id: v1(), date: '24.02.2005', name: 'Hornet', city: 'Hallownest', education: 'Master of needle and thread', website: 'https://www.hollowknight.com/', avatar: '/img/avatar4.png'}
+    ],
+    newPostText: ''
+}
 
+const profileReducer = (state: StateProfilePageType = initialState, action: ActionsTypes) => {
     switch(action.type) {
         case "ADD-POST":
             const newPost: StatePostsDataType = {

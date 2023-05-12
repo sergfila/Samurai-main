@@ -4,10 +4,27 @@ import {
     StateChatsDataType,
     StateMessagesPageType,
     UpdateNewMessageTextActionType
-} from "./state";
+} from "./store";
 import {v1} from "uuid";
 
-export const dialogsReducer = (state: StateMessagesPageType, action: ActionsTypes) => {
+const initialState: StateMessagesPageType = {
+    dialogsData: [
+        {id: v1(), name: 'The Knight'},
+        {id: v1(), name: 'Monomon the Teacher'},
+        {id: v1(), name: 'Iselda'},
+        {id: v1(), name: 'Caspian'},
+        {id: v1(), name: 'Cornifer'},
+    ],
+    chatsData: [
+        {id: v1(), message: 'Hey', avatar: '/img/avatar4.png'},
+        {id: v1(), message: 'How are you?', avatar: '/img/avatar4.png'},
+        {id: v1(), message: 'Fine', avatar: '/img/avatar4.png'},
+        {id: v1(), message: 'Good Bye', avatar: '/img/avatar4.png'},
+    ],
+    newChatMessage: ''
+}
+
+export const dialogsReducer = (state: StateMessagesPageType = initialState, action: ActionsTypes) => {
 
     switch(action.type) {
         case "ADD-CHAT-MESSAGE":
