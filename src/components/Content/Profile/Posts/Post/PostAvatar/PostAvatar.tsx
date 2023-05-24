@@ -5,10 +5,10 @@ type PostAvatarType = {
     postAvatar: string;
 }
 
-const PostAvatar = (props: PostAvatarType) => {
+const PostAvatar = ({postAvatar}: PostAvatarType) => {
     return (
         <div className={s.avatar}>
-            <img src={`${process.env.PUBLIC_URL}${props.postAvatar}`} alt={''}/>
+            <img src={`${process.env.PUBLIC_URL}${postAvatar}`} alt={''}/>
         </div>
     )
 }

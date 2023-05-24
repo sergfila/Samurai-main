@@ -6,10 +6,10 @@ type ProfileNameType = {
     profileName: StateInfoDataType[]
 }
 
-export const ProfileName = (props: ProfileNameType) => {
+export const ProfileName = ({profileName}: ProfileNameType) => {
 
     return (
-        <div className={s.name}>{props.profileName[0].name}</div>
+        <div className={s.name}>{profileName[0].name}</div>
     )
 }
 

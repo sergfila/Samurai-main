@@ -13,20 +13,20 @@ type ProfilePageType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-const Profile = (props: ProfilePageType) => {
+const Profile = ({profilePage, dispatch}: ProfilePageType) => {
 
     return (
         <div className={s.profile}>
             <div className={s.item}>
-                <ProfileBanner />
-                <ProfileAvatar profileAvatar={props.profilePage.infoData} />
+                <ProfileBanner profileBanner={profilePage.infoData}/>
+                <ProfileAvatar profileAvatar={profilePage.infoData} />
                 <div className={s.data}>
-                    <ProfileName profileName={props.profilePage.infoData}/>
-                    <ProfileList profileList={props.profilePage.infoData}/>
+                    <ProfileName profileName={profilePage.infoData}/>
+                    <ProfileList profileList={profilePage.infoData}/>
                 </div>
             </div>
             <div className={s.item}>
-                <PostsContainer profilePage={props.profilePage} dispatch={props.dispatch} />
+                <PostsContainer />
             </div>
         </div>
     );

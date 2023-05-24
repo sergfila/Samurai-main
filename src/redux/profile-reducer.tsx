@@ -11,7 +11,16 @@ let initialState: StateProfilePageType = {
         {id: v1(), message: 'My first post', likeCount: '3', avatar: '/img/avatar4.png'}
     ],
     infoData: [
-        {id: v1(), date: '24.02.2005', name: 'Hornet', city: 'Hallownest', education: 'Master of needle and thread', website: 'https://www.hollowknight.com/', avatar: '/img/avatar4.png'}
+        {
+            id: v1(),
+            date: '24.02.2005',
+            name: 'Hornet',
+            city: 'Hallownest',
+            education: 'Master of needle and thread',
+            website: 'https://www.hollowknight.com/',
+            banner: '/img/banner4.jpg',
+            avatar: '/img/avatar4.png'
+        }
     ],
     newPostText: ''
 }
@@ -25,12 +34,9 @@ const profileReducer = (state: StateProfilePageType = initialState, action: Acti
                 likeCount: '0',
                 avatar: '/img/avatar4.png'
             }
-            state.newPostText = '';
-            state.postsData.unshift(newPost);
-            return state;
+            return {...state, newPostText: '', postsData: [newPost,...state.postsData]}
         case "UPDATE-NEW-POST-TEXT":
-            state.newPostText = action.newText;
-            return state;
+            return {...state, newPostText: action.newText};
         default:
             return state;
     }

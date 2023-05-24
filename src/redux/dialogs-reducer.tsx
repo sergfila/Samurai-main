@@ -24,7 +24,7 @@ const initialState: StateMessagesPageType = {
     newChatMessage: ''
 }
 
-export const dialogsReducer = (state: StateMessagesPageType = initialState, action: ActionsTypes) => {
+export const dialogsReducer = (state: StateMessagesPageType = initialState, action: ActionsTypes): StateMessagesPageType => {
 
     switch(action.type) {
         case "ADD-CHAT-MESSAGE":
@@ -33,12 +33,9 @@ export const dialogsReducer = (state: StateMessagesPageType = initialState, acti
                 message: state.newChatMessage,
                 avatar: '/img/avatar4.png'
             }
-            state.newChatMessage = ''
-            state.chatsData.push(newChatMessage);
-            return state;
+            return {...state, newChatMessage: '', chatsData: [newChatMessage,...state.chatsData]};
         case "UPDATE-NEW-MESSAGE-TEXT":
-            state.newChatMessage = action.newText;
-            return state;
+            return {...state, newChatMessage: action.newText};
         default:
             return state;
     }

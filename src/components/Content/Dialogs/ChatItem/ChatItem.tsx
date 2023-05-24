@@ -2,21 +2,20 @@ import s from "./ChatItem.module.scss";
 import React from "react";
 
 type ChatItemType = {
-    message: string
     id: string
+    message: string
     avatar: string
 }
 
-const ChatItem = (props: ChatItemType) => {
+const ChatItem = ({id, message, avatar}: ChatItemType) => {
 
     return (
         <div className={s.chat}>
             <div className={s.avatar}>
-                <img src={`${process.env.PUBLIC_URL}${props.avatar}`} alt={''}/>
-
+                <img src={`${process.env.PUBLIC_URL}${avatar}`} alt={''}/>
             </div>
             <div className={s.text}>
-                {props.message}
+                {message}
             </div>
         </div>
     )

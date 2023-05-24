@@ -1,10 +1,15 @@
 import React from "react";
 import s from "./ProfileBanner.module.scss";
+import {StateInfoDataType} from "../../../../redux/store";
 
-const ProfileBanner = () => {
+type ProfileBannerType = {
+    profileBanner: StateInfoDataType[]
+}
+
+const ProfileBanner = ({profileBanner}: ProfileBannerType) => {
     return (
         <div className={s.banner}>
-            <img src={require('./banner2.jpg')} alt={''}/>
+            <img src={`${process.env.PUBLIC_URL}${profileBanner[0].banner}`} alt={''}/>
         </div>
     );
 }

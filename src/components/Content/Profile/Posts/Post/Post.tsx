@@ -9,12 +9,12 @@ type PostDataType = {
     avatarPost: string
 }
 
-const Post = (props: PostDataType) => {
+const Post = ({messagePost, likecountPost, avatarPost}: PostDataType) => {
 
     return (
         <div className={s.item}>
-            <PostAvatar postAvatar={props.avatarPost}/>
-            <PostText message={props.messagePost} likecount={props.likecountPost}/>
+            <PostAvatar postAvatar={avatarPost}/>
+            <PostText message={messagePost} likecount={likecountPost}/>
         </div>
     )
 }

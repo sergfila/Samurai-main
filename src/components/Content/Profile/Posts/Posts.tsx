@@ -10,30 +10,30 @@ type PostsType = {
     addPost: () => void
 }
 
-const Posts = (props: PostsType) => {
+const Posts = ({profilePage, addPost, updateNewPostText}: PostsType) => {
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const postsElements = props.profilePage.postsData.map((el) =>
+    const postsElements = profilePage.postsData.map((el) =>
         <Post key={el.id} messagePost={el.message}
               likecountPost={el.likeCount}
               avatarPost={el.avatar}
         />)
 
-    const addPost = () => {
+    const handlerAddPost = () => {
         if (newPostElement.current) {
-        props.addPost();
+        addPost();
         }
     }
-    const onPostChange = () => {
+    const handlerOnPostChange = () => {
         if (newPostElement.current) {
             const text = newPostElement.current.value
-            props.updateNewPostText(text)
+            updateNewPostText(text)
         }
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && e.shiftKey) {
-            addPost();
+            handlerAddPost();
         }
     }
 
@@ -43,13 +43,13 @@ const Posts = (props: PostsType) => {
                 <MainTitle title="My Posts"/>
                 <div className={s.form}>
                     <textarea
-                        value={props.profilePage.newPostText}
-                        onChange={onPostChange}
+                        value={profilePage.newPostText}
+                        onChange={handlerOnPostChange}
                         ref={newPostElement}
                         onKeyPress={onKeyPressHandler}
                     />
                     <button
-                        onClick={addPost}
+                        onClick={handlerAddPost}
                     >Send
                     </button>
                 </div>

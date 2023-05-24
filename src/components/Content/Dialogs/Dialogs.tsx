@@ -11,13 +11,13 @@ type MessagesPageType = {
     onMessageChange: (text: string) => void
 }
 
-const Dialogs = (props: MessagesPageType) => {
+const Dialogs = ({messagesPage, addNewMessage, onMessageChange}: MessagesPageType) => {
 
-    let dialogsElements = props.messagesPage.dialogsData.map((el) => <DialogsItem
+    let dialogsElements = messagesPage.dialogsData.map((el) => <DialogsItem
         key={el.id}
         name={el.name}
         id={el.id} />);
-    let chatsElements = props.messagesPage.chatsData.map((el) => <ChatItem
+    let chatsElements = messagesPage.chatsData.map((el) => <ChatItem
         key={el.id}
         message={el.message}
         id={el.id}
@@ -25,19 +25,19 @@ const Dialogs = (props: MessagesPageType) => {
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    const addNewMessage= () => {
+    const handlerAddNewMessage= () => {
         if (newMessageElement.current) {
-            props.addNewMessage()
+            addNewMessage()
         }
     }
-    const onMessageChange = () => {
+    const handlerOnMessageChange = () => {
         if (newMessageElement.current) {
             const text = newMessageElement.current.value
-            props.onMessageChange(text)
+            onMessageChange(text)
         }
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        return e.key === "Enter" && e.shiftKey ? addNewMessage() : null
+        return e.key === "Enter" && e.shiftKey ? handlerAddNewMessage() : null
     }
 
     return (
@@ -51,12 +51,12 @@ const Dialogs = (props: MessagesPageType) => {
                     {chatsElements}
                     <div className={s.elements}>
                         <textarea
-                            value={props.messagesPage.newChatMessage}
-                            onChange={onMessageChange}
+                            value={messagesPage.newChatMessage}
+                            onChange={handlerOnMessageChange}
                             ref={newMessageElement}
                             onKeyPress={onKeyPressHandler}
                         />
-                        <button onClick={addNewMessage}>Send</button>
+                        <button onClick={handlerAddNewMessage}>Send</button>
                     </div>
                 </ul>
             </div>

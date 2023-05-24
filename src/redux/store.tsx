@@ -21,6 +21,7 @@ export type StateInfoDataType = {
     city: string
     education: string
     website: string
+    banner: string
     avatar: string
 }
 export type StateMessagesPageType = {
