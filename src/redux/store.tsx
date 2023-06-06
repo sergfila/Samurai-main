@@ -46,6 +46,21 @@ export type StateFriendsBarType = {
     name: string
     avatar: string
 }
+export type StateUsersPageType = {
+    users: StateUsersType[]
+}
+export type StateUsersType = {
+    id: string
+    followed: boolean
+    fullName: string
+    status: string
+    avatar: string
+    location: StateUsersLocationType
+}
+export type StateUsersLocationType = {
+    city: string
+    country: string
+}
 
 export type StoreType = {
     _state: StateGlobalType
@@ -59,6 +74,9 @@ export type ActionsTypes = AddPostActionType
     | UpdateNewPostTextActionType
     | AddChatMessageActionType
     | UpdateNewMessageTextActionType
+    | FollowUsersActionType
+    | UnfollowUsersActionType
+    | SetUsersActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -74,7 +92,18 @@ export type UpdateNewMessageTextActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newText: string
 }
-
+export type FollowUsersActionType = {
+    type: 'FOLLOW'
+    userId: string
+}
+export type UnfollowUsersActionType = {
+    type: 'UNFOLLOW'
+    userId: string
+}
+export type SetUsersActionType = {
+    type: 'SET_USERS'
+    userId: StateUsersType[]
+}
 
 // export const store: StoreType = {
 //     // _state: {

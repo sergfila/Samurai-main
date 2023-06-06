@@ -8,6 +8,7 @@ import Settings from "./Settings/Settings";
 import Friends from "./Friends/Friends";
 import {ActionsTypes, StateGlobalType} from "../../redux/store";
 import DialogsContainer from "./Dialogs/DialogsContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 type ContentStateType = {
     contentState: StateGlobalType
@@ -26,6 +27,7 @@ const Content = ({contentState, dispatch}: ContentStateType) => {
                                         dispatch={dispatch}
                 />}/>
             <Route path={'/dialogs'} render={ () => <DialogsContainer />}/>
+            <Route path={'/users'} render={ () => <UsersContainer />}/>
             <Route path={'/music'} render={ () => <Music />}/>
             <Route path={'/news'} render={ () => <News />}/>
             <Route path={'/settings'} render={ () => <Settings />}/>
