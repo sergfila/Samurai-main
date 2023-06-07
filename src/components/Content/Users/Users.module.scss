@@ -7,7 +7,7 @@
 .items {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     gap: 20px;
 
     .item {
@@ -15,14 +15,27 @@
         &:first-child {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            width: 15%;
+            align-items: center;
+            gap: 8px;
+            min-width: 100px;
 
             img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
                 object-fit: cover;
+            }
+
+            .follow {
+                @include mini_button;
+                background-color: var(--pink);
+                color: var(--dark-pink);
+            }
+
+            .unfollow {
+                @include mini_button;
+                background-color: var(--dark-pink);
+                color: var(--white);
             }
         }
 
@@ -33,6 +46,23 @@
             padding: 8px 12px;
             border-radius: 8px;
             background-color: var(--light-gray);
+            flex-direction: column;
+
+            .name {
+                font-weight: 500;
+                margin-bottom: 16px;
+
+                span {
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: var(--gray);
+                }
+            }
+
+            .status {
+                margin-top: auto;
+                font-size: 14px;
+            }
         }
     }
 }

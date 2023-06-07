@@ -1,13 +1,56 @@
 import React from 'react';
 import s from './Users.module.scss';
-import {StateUsersPageType} from "../../../redux/store";
+import {StateUsersPageType, StateUsersType} from "../../../redux/store";
 import MainTitle from "../../Elements/Titles/MainTitle";
+import {v1} from "uuid";
 
 type UsersPageType = {
     usersPage: StateUsersPageType
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    setUsers: (users: StateUsersType[]) => void
 }
 
-const Users = ({usersPage}: UsersPageType) => {
+const Users = ({usersPage, follow, unfollow, setUsers}: UsersPageType) => {
+
+    if (usersPage.users.length === 0) {
+        setUsers([
+            {
+                id: v1(),
+                followed: true,
+                fullName: 'The Knight',
+                status: 'bla bla bla',
+                avatar: '/img/avatar4.png',
+                location: {
+                    city: 'Dirtmouth',
+                    country: 'Hallownest'
+                }
+            },
+            {
+                id: v1(),
+                followed: false,
+                fullName: 'Grim',
+                status: 'bla bla bla',
+                avatar: '/img/avatar4.png',
+                location: {
+                    city: 'City of Tears',
+                    country: 'Hallownest'
+                }
+            },
+            {
+                id: v1(),
+                followed: true,
+                fullName: 'Cornifer',
+                status: 'bla bla bla',
+                avatar: '/img/avatar4.png',
+                location: {
+                    city: 'Deepnest',
+                    country: 'Hallownest'
+                }
+            },
+        ])
+    }
+
     return (
         <div className={s.wrapper}>
             <MainTitle title='Users'/>
@@ -20,26 +63,17 @@ const Users = ({usersPage}: UsersPageType) => {
                         </div>
                         <div>
                             {el.followed
-                                ? <a href=''>follow</a>
-                                : <a href=''>unfollow</a>}
+                                ? <button className={s.follow} onClick={() => {follow(el.id)}}>unfollow</button>
+                                : <button className={s.unfollow} onClick={() => {unfollow(el.id)}}>follow</button>}
                         </div>
                     </div>
                     <div className={s.item}>
-                        <div>
-                            <div>
-                                {el.fullName}
-                            </div>
-                            <div>
-                                {el.status}
-                            </div>
+                        <div className={s.name}>
+                            {el.fullName}
+                            <div><span>{el.location.country}, {el.location.city}</span></div>
                         </div>
-                        <div>
-                            <div>
-                                {el.location.city}
-                            </div>
-                            <div>
-                                {el.location.country}
-                            </div>
+                        <div className={s.status}>
+                            {el.status}
                         </div>
                     </div>
                 </div>)}

@@ -8,41 +8,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState: StateUsersPageType = {
-    users: [
-        {
-            id: v1(),
-            followed: true,
-            fullName: 'The Knight',
-            status: 'bla bla bla',
-            avatar: '/img/avatar4.png',
-            location: {
-                city: 'Dirtmouth',
-                country: 'Hallownest'
-            }
-        },
-        {
-            id: v1(),
-            followed: false,
-            fullName: 'Grim',
-            status: 'bla bla bla',
-            avatar: '/img/avatar4.png',
-            location: {
-                city: 'City of Tears',
-                country: 'Hallownest'
-            }
-        },
-        {
-            id: v1(),
-            followed: true,
-            fullName: 'Cornifer',
-            status: 'bla bla bla',
-            avatar: '/img/avatar4.png',
-            location: {
-                city: 'Deepnest',
-                country: 'Hallownest'
-            }
-        },
-    ],
+    users: []
 }
 
 export const usersReducer = (state: StateUsersPageType = initialState, action: ActionsTypes): StateUsersPageType => {
@@ -51,18 +17,18 @@ export const usersReducer = (state: StateUsersPageType = initialState, action: A
             return {
                 ...state,
                 users: state.users.map((el) =>
-                    el.id === action.userId ? { ...el, followed: true } : el
+                    el.id === action.userId ? { ...el, followed: false } : el
                 ),
             };
         case 'UNFOLLOW':
             return {
                 ...state,
                 users: state.users.map((el) =>
-                    el.id === action.userId ? { ...el, followed: false } : el
+                    el.id === action.userId ? { ...el, followed: true } : el
                 ),
             };
         case 'SET_USERS':
-            return {...state, users: [...state.users, ...action.userId]}
+            return {...state, users: [...state.users, ...action.users]}
         default:
             return state;
     }

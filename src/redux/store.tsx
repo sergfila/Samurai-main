@@ -102,7 +102,7 @@ export type UnfollowUsersActionType = {
 }
 export type SetUsersActionType = {
     type: 'SET_USERS'
-    userId: StateUsersType[]
+    users: StateUsersType[]
 }
 
 // export const store: StoreType = {
