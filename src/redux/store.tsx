@@ -52,10 +52,12 @@ export type StateUsersPageType = {
 export type StateUsersType = {
     id: string
     followed: boolean
-    fullName: string
+    name: string
     status: string
-    avatar: string
-    location: StateUsersLocationType
+    photos: {
+        small: string
+    }
+    // location: StateUsersLocationType
 }
 export type StateUsersLocationType = {
     city: string

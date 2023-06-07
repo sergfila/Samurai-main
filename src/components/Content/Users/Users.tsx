@@ -3,6 +3,7 @@ import s from './Users.module.scss';
 import {StateUsersPageType, StateUsersType} from "../../../redux/store";
 import MainTitle from "../../Elements/Titles/MainTitle";
 import {v1} from "uuid";
+import axios from "axios";
 
 type UsersPageType = {
     usersPage: StateUsersPageType
@@ -14,41 +15,47 @@ type UsersPageType = {
 const Users = ({usersPage, follow, unfollow, setUsers}: UsersPageType) => {
 
     if (usersPage.users.length === 0) {
-        setUsers([
-            {
-                id: v1(),
-                followed: true,
-                fullName: 'The Knight',
-                status: 'bla bla bla',
-                avatar: '/img/avatar4.png',
-                location: {
-                    city: 'Dirtmouth',
-                    country: 'Hallownest'
-                }
-            },
-            {
-                id: v1(),
-                followed: false,
-                fullName: 'Grim',
-                status: 'bla bla bla',
-                avatar: '/img/avatar4.png',
-                location: {
-                    city: 'City of Tears',
-                    country: 'Hallownest'
-                }
-            },
-            {
-                id: v1(),
-                followed: true,
-                fullName: 'Cornifer',
-                status: 'bla bla bla',
-                avatar: '/img/avatar4.png',
-                location: {
-                    city: 'Deepnest',
-                    country: 'Hallownest'
-                }
-            },
-        ])
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                setUsers(response.data.items)
+            })
+
+        // setUsers([
+        //     {
+        //         id: v1(),
+        //         followed: true,
+        //         fullName: 'The Knight',
+        //         status: 'bla bla bla',
+        //         avatar: '/img/avatar4.png',
+        //         location: {
+        //             city: 'Dirtmouth',
+        //             country: 'Hallownest'
+        //         }
+        //     },
+        //     {
+        //         id: v1(),
+        //         followed: false,
+        //         fullName: 'Grim',
+        //         status: 'bla bla bla',
+        //         avatar: '/img/avatar4.png',
+        //         location: {
+        //             city: 'City of Tears',
+        //             country: 'Hallownest'
+        //         }
+        //     },
+        //     {
+        //         id: v1(),
+        //         followed: true,
+        //         fullName: 'Cornifer',
+        //         status: 'bla bla bla',
+        //         avatar: '/img/avatar4.png',
+        //         location: {
+        //             city: 'Deepnest',
+        //             country: 'Hallownest'
+        //         }
+        //     },
+        // ])
     }
 
     return (
@@ -59,7 +66,7 @@ const Users = ({usersPage, follow, unfollow, setUsers}: UsersPageType) => {
                 <div className={s.items} key={el.id}>
                     <div className={s.item}>
                         <div>
-                            <img src={`${process.env.PUBLIC_URL}${el.avatar}`} alt=''/>
+                            <img src={el.photos.small != null ? el.photos.small : `${process.env.PUBLIC_URL}/img/unknown.png`} alt=''/>
                         </div>
                         <div>
                             {el.followed
@@ -69,8 +76,8 @@ const Users = ({usersPage, follow, unfollow, setUsers}: UsersPageType) => {
                     </div>
                     <div className={s.item}>
                         <div className={s.name}>
-                            {el.fullName}
-                            <div><span>{el.location.country}, {el.location.city}</span></div>
+                            {el.name}
+                            <div><span>{'el.location.country'}, {'el.location.city'}</span></div>
                         </div>
                         <div className={s.status}>
                             {el.status}
